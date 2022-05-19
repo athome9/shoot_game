@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             //.load(R.drawable.earth)
             .load(R.drawable.pic)
             .circleCrop()
-            .override(1000, 800)
+            .override(1000, 800)    // 照片太大會閃退
             .into(imgAuthor)
 
         img.setOnClickListener({
@@ -46,6 +46,8 @@ class MainActivity : AppCompatActivity() {
                 job = GlobalScope.launch(Dispatchers.Main) {
                     while(flag) {
                         delay(10)
+                        game.fly.update()
+
                         var canvas: Canvas = game.surfaceHolder.lockCanvas()
                         game.drawSomething(canvas)
                         game.surfaceHolder.unlockCanvasAndPost(canvas)
