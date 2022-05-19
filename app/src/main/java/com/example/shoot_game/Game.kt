@@ -1,0 +1,48 @@
+package com.example.shoot_game
+
+import android.content.Context
+import android.graphics.*
+import android.util.AttributeSet
+import android.view.SurfaceHolder
+import android.view.SurfaceView
+import android.view.GestureDetector
+
+class Game(context: Context?, attrs: AttributeSet?) : SurfaceView(context, attrs), SurfaceHolder.Callback {
+    var surfaceHolder: SurfaceHolder
+    var BG: Bitmap
+    
+    init {
+        surfaceHolder = getHolder()
+        BG = BitmapFactory.decodeResource(getResources(), R.drawable.background)
+        surfaceHolder.addCallback(this)
+    }
+
+    override fun surfaceCreated(p0: SurfaceHolder) {
+        var canvas: Canvas = surfaceHolder.lockCanvas()
+            drawSomething(canvas)
+        surfaceHolder.unlockCanvasAndPost(canvas)
+    }
+
+    private fun drawSomething(canvas: Canvas) {
+        var SrcRect: Rect = Rect(0, 0, BG.width, BG.height)
+        var w: Int = width
+        var h: Int = height
+        var DestRect: Rect = Rect(0, 0, w, h)
+        canvas.drawBitmap(BG, SrcRect, DestRect, null)
+
+        val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        paint.color = Color.BLACK
+        paint.textSize = 50f
+        canvas.drawText("射擊遊戲(作者：卓妤柔)", 50f, 50f, paint)
+    }
+
+    override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
+
+    }
+
+    override fun surfaceDestroyed(p0: SurfaceHolder) {
+
+    }
+
+
+}
