@@ -32,13 +32,30 @@ class Fly (context: Context){
     }
 
     fun update() {
-        if(count==1) {
-            count=2
-            image=BitmapFactory.decodeResource(res, R.drawable.fly2)
-        }else{
-            count=1
-            image=BitmapFactory.decodeResource(res, R.drawable.fly1)
+        if(fire==0) {
+            if(count==1) {
+                count=2
+                image=BitmapFactory.decodeResource(res, R.drawable.fly2)
+            }else{
+                count=1
+                image=BitmapFactory.decodeResource(res, R.drawable.fly1)
+            }
+        }else {
+            when(fire){
+                1 -> image=BitmapFactory.decodeResource(res, R.drawable.shoot1)
+                2 -> image=BitmapFactory.decodeResource(res, R.drawable.shoot2)
+                3 -> image=BitmapFactory.decodeResource(res, R.drawable.shoot3)
+                4 -> image=BitmapFactory.decodeResource(res, R.drawable.shoot4)
+                5 -> image=BitmapFactory.decodeResource(res, R.drawable.shoot5)
+            }
+
+            fire++
+
+            if(fire > 5){
+                fire= 0
+            }
         }
+
     }
 
 }
