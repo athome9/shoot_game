@@ -16,6 +16,7 @@ class Fly (context: Context){
     var SrcRect: Rect
     lateinit var DestRect:Rect
     var count:Int=1
+    var fire:Int=0
 
     init {
         image=BitmapFactory.decodeResource(res, R.drawable.fly1)
@@ -33,6 +34,9 @@ class Fly (context: Context){
     fun update() {
         if(count==1) {
             count=2
+            image=BitmapFactory.decodeResource(res, R.drawable.fly2)
+        }else{
+            count=1
             image=BitmapFactory.decodeResource(res, R.drawable.fly1)
         }
     }
